@@ -42,7 +42,7 @@
 
 	* [ctrlp（查找文件）](#ctrlp（查找文件）)
 
-	* [coc（补全）](#coc（补全）)
+	* [coc（补全）](#coc（补全）) `已经更换成YCM`
 
 	* [markdown-preview（markdown浏览）](#markdown-preview（markdown浏览）)
 
@@ -51,9 +51,14 @@
 	* [vim-commentary（快速注释）](#vim-commentary（快速注释）)
 
 	* [ultisnips(代码片段)](#ultisnips(代码片段))
+	
+	* [delimitMate(括号补全)](#delimitmate(括号补全))
+
+	* [YouCompleteMe(代码补全)](#youcompleteme(代码补全))
 * [5.自定义代码输入](#5.自定义代码输入)
 
 	* [5.1markdown](#5.1markdown)
+
 
 * [respect](#respect)
 
@@ -77,6 +82,9 @@
 
 - [ ] pip
 
+- [ ] gcc
+
+
 **Update your python client:**
 ```shell
 $ python3 -m pip install --user --upgrade pynvim
@@ -95,9 +103,7 @@ $ python3 -m pip install --user --upgrade pynvim
 
 
 
-## coc
-
-
+## YCM
 
 - [ ] ctags
 
@@ -107,7 +113,17 @@ $ python3 -m pip install --user --upgrade pynvim
 
 - [ ] - [ ] 执行 `pip3 install flake8` (用于代码检查)
 
-
+### 必须做的一些事情
+安装完YCM后可能会出现下面的错误提示
+```
+The ycmd server SHUT DOWN (restart with ':YcmRe.... Follow the instructions
+```
+你需要手动执行脚本
+```
+cd YouCompleteMe  //在插件目录下
+./install.py --clang-completer
+```
+`建议走终端代理安装`
 
 ### 其他
 
@@ -251,7 +267,9 @@ $ python3 -m pip install --user --upgrade pynvim
 | c-b    | 后缀 |
 | c-z    |      |
 
+### [delimitMate](https://github.com/Raimondi/delimitMate)(括号补全)
 
+### [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)(代码补全)
 
 
 ***

@@ -19,7 +19,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 
-
 " ===
 
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
@@ -66,6 +65,7 @@ set showmatch
 set matchtime=1
 setlocal noswapfile
 set bufhidden=hide
+set autoread
 "Go back to the last edit
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -227,12 +227,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 
 "==completion=="
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'Raimondi/delimitMate'
+
 
 "==Markdown=="
-"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
@@ -287,43 +289,60 @@ let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+
+" ===
+
+" === YouCompleteMe
+
+" ===
+let g:ycm_global_ycm_extra_conf= '$HOME/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_cache_omnifunc=0
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+set completeopt=longest,menu
+
+
+
 " ===
 
 " === coc
 
 " ===
 " fix the most annoying bug that coc has
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-markmap']
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-" coc-todolist
-noremap ta :CocCommand todolist.create<CR>
-noremap td :CocCommand todolist.upload<CR>
-noremap tD :CocCommand todolist.download<CR>
-noremap tc :CocCommand todolist.clearNotice<CR>
-noremap tc :CocCommand todolist.clearNotice<CR>
-" coc-translator
-nmap ts <Plug>(coc-translator-p)
-" coc-markmap
-command! Markmap CocCommand markmap.create
+"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+"let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-markmap']
+""set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"" use <tab> for trigger completion and navigate to the next complete item
+"function! s:check_back_space() abort
+"	let col = col('.') - 1
+"	return !col || getline('.')[col - 1]	=~ '\s'
+"endfunction
+"inoremap <silent><expr> <Tab>
+"			\ pumvisible() ? "\<C-n>" :
+"			\ <SID>check_back_space() ? "\<Tab>" :
+"			\ coc#refresh()
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+""inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+"function! s:check_back_space() abort
+"	let col = col('.') - 1
+"	return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"inoremap <silent><expr> <c-space> coc#refresh()
+"" Useful commands
+"nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+"" coc-todolist
+"noremap ta :CocCommand todolist.create<CR>
+"noremap td :CocCommand todolist.upload<CR>
+"noremap tD :CocCommand todolist.download<CR>
+"noremap tc :CocCommand todolist.clearNotice<CR>
+"noremap tc :CocCommand todolist.clearNotice<CR>
+"" coc-translator
+"nmap ts <Plug>(coc-translator-p)
+"" coc-markmap
+"command! Markmap CocCommand markmap.create
 
 " ===
 
