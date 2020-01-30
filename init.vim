@@ -202,6 +202,8 @@ func! CompileRunGcc()
 		silent! exec "!".g:mkdp_browser." % &"
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
+	elseif &filetype== "yaml"
+		exec "!hexo s" 
 	endif
 endfunc
 

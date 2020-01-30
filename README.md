@@ -111,7 +111,7 @@ $ python3 -m pip install --user --upgrade pynvim
 
 - [ ] ripgrep
 
-- [ ] - [ ] 执行 `pip3 install flake8` (用于代码检查)
+- [ ] 执行 `pip3 install flake8` (用于代码检查)
 
 ### 必须做的一些事情
 安装完YCM后可能会出现下面的错误提示
@@ -120,8 +120,8 @@ The ycmd server SHUT DOWN (restart with ':YcmRe.... Follow the instructions
 ```
 你需要手动执行脚本
 ```
-cd YouCompleteMe  //在插件目录下
-./install.py --clang-completer
+$ cd YouCompleteMe  //在插件目录下
+$ ./install.py --clang-completer
 ```
 `建议走终端代理安装`
 
