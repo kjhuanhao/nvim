@@ -113,8 +113,8 @@ vnoremap Y "+y
 "     v
 nnoremap <silent> u k
 nnoremap <silent> k l
-vnoremap <silent>> u k
-vnoremap <silent>> k l
+vnoremap <silent> u k
+vnoremap <silent> k l
 
 " U/E keys for 5 times u/e (faster navigation)
 noremap <silent>U 5k
@@ -219,8 +219,8 @@ Plug 'mhinz/vim-startify'
 "==Beautify my vim=="
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'liuchengxu/space-vim-dark'
-
+"Plug 'liuchengxu/space-vim-dark'
+Plug 'blueshirts/darcula'
 
 "==File=="
 Plug 'preservim/nerdtree'
@@ -280,13 +280,29 @@ let g:NERDTreeIndicatorMapCustom = {
 " === Dress my nvim
 
 " ===
+hi clear coffeeParens
+hi coffeeParens NONE
+syn clear coffeeParens
 
-set termguicolors     " enable true colors support
-colorscheme space-vim-dark
-hi Comment cterm=italic
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+hi clear coffeeSpecialIdent
+hi coffeeSpecialIdent NONE
+syn clear coffeeSpecialIdent
+
+hi clear coffeeCurlies
+hi coffeeCoffeeCurlies NONE
+syn clear coffeeCurlies
+
+" Highlight the this symbol.
+" syn match coffeeThis "\v\@"
+" hi def link coffeeThis Keyword"
+syntax enable
+colorscheme darcula
+"set termguicolors     " enable true colors support
+"colorscheme space-vim-dark
+"hi Comment cterm=italic
+"hi Normal     ctermbg=NONE guibg=NONE
+"hi LineNr     ctermbg=NONE guibg=NONE
+"hi SignColumn ctermbg=NONE guibg=NONE
 let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
